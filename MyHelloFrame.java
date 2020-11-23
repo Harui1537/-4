@@ -1,9 +1,9 @@
 import javax.swing.*;
 /**
- * 여기에 MyHelloFrame 클래스 설명을 작성하십시오.
+ * 프래임을 만드는 클래스
  * 
- * @author (작성자 이름) 
- * @version (버전번호나 날짜)
+ * @author (2017315013 이권효, 2018315023 야기시타 토시유키) 
+ * @version (2020.11.23)
  */
 public class MyHelloFrame extends JFrame
 {
@@ -13,8 +13,10 @@ public class MyHelloFrame extends JFrame
         
         JPanel mp = new MyHelloPanelListener();
         this.add(mp);
-        
+        mp.setFocusable(true);
+        mp.requestFocus();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 }
+

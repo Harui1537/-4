@@ -1,33 +1,65 @@
-
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
 /**
- * 여기에 MyHelloPanelListener 클래스 설명을 작성하십시오.
+ * 마우스와 키보드를 이용하여 좌표를 나타내는 클래스
  * 
- * @author (작성자 이름) 
- * @version (버전번호나 날짜)
+ * @author (2017315013 이권효, 2018315023 야기시타 토시유키) 
+ * @version (2020.11.23)
  */
-public class MyHelloPanelListener
+class MyHelloPanelListener extends JPanel implements MouseListener, KeyListener
 {
-    // 인스턴스 변수 - 다음의 예제를 사용자에 맞게 바꾸십시오
-    private int x;
-
-    /**
-     * MyHelloPanelListener 클래스의 객체 생성자
-     */
-    public MyHelloPanelListener()
-    {
-        // 인스턴스 변수의 초기화
-        x = 0;
+    JLabel la;
+    public MyHelloPanelListener(){
+        la = new JLabel("HELLO");
+        this.setLayout(null);
+        la.setLocation(50, 50);
+        la.setSize(100, 20);
+        this.add(la);
+        this.addMouseListener(this);
+        this.addKeyListener(this);
     }
-
-    /**
-     * 예제 메소드 - 이 주석을 사용자에 맞게 바꾸십시오
-     * 
-     * @param  y   메소드의 예제 매개변수
-     * @return     x 더하기 y 
-     */
-    public int sampleMethod(int y)
-    {
-        // 여기에 코드를 작성하십시오.
-        return x + y;
+    public void keyPressed(KeyEvent e){
+        int keyCode = e.getKeyCode();
+        
+        switch(keyCode){
+            case KeyEvent.VK_UP:
+                la.setLocation(la.getX(), la.getY() - 10);
+                la.setText("(" + la.getX() + "," + la.getY() + ")");
+                break;
+            case KeyEvent.VK_DOWN:
+                la.setLocation(la.getX(), la.getY() + 10);
+                la.setText("(" + la.getX() + "," + la.getY() + ")");
+                break;
+            case KeyEvent.VK_LEFT:
+                la.setLocation(la.getX() - 10, la.getY());
+                la.setText("(" + la.getX() + "," + la.getY() + ")");
+                break;
+            case KeyEvent.VK_RIGHT:
+                la.setLocation(la.getX() + 10, la.getY());
+                la.setText("(" + la.getX() + "," + la.getY() + ")");
+                break;
+        }
+    }
+    public void keyReleased(KeyEvent e){
+    }
+    public void keyTyped(KeyEvent e){
+    }
+    
+    public void mouseClicked(MouseEvent e){
+        la.setLocation(e.getX(), e.getY());
+        la.setText("(" + e.getX() + "," + e.getY() + ")");
+    }
+    public void mouseEntered(MouseEvent e){
+        la.setText("START");
+        this.setBackground(Color.YELLOW);
+    }
+    public void mouseExited(MouseEvent e){
+        la.setText("END");
+        this.setBackground(Color.GRAY);
+    }
+    public void mousePressed(MouseEvent e){
+    }
+    public void mouseReleased(MouseEvent e){
     }
 }
